@@ -6,7 +6,7 @@ group :development, :test do
   gem 'mysql2'
 end
 group :production do
-  gem 'pg'
+#  gem 'pg'
 end
 
 gem 'devise'
@@ -22,7 +22,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 gem 'unicorn'
-gem 'capistrano', group: :development
+#gem 'capistrano', group: :development
 gem 'better_errors'
 gem 'settingslogic'
 gem 'cancan'
@@ -32,4 +32,9 @@ gem "haml-rails"
 gem 'cucumber'
 gem 'dalli'
 gem 'mechanize'
+
+
+gem 'capistrano'
+gem 'thin'
+gem 'bigdecimal'
 
