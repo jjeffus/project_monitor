@@ -4,7 +4,9 @@ gem 'rails', '4.0.0.rc1'
 
 group :development, :test do
   gem 'mysql2'
+  gem 'rspec-rails'
 end
+
 group :production do
 #  gem 'pg'
 end
@@ -18,9 +20,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
-group :doc do
-  gem 'sdoc', require: false
-end
+
 gem 'unicorn'
 #gem 'capistrano', group: :development
 gem 'better_errors'
@@ -29,12 +29,17 @@ gem 'cancan'
 gem 'elance', git: 'git://github.com/NetVersaLLC/elance_gem.git'
 gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
 gem "haml-rails"
-gem 'cucumber'
+gem 'cucumber-rails'
 gem 'dalli'
 gem 'mechanize'
-
-
 gem 'capistrano'
 gem 'thin'
-gem 'bigdecimal'
 
+group :doc do
+  gem 'sdoc', require: false
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+end

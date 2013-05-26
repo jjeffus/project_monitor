@@ -1,39 +1,51 @@
 Given(/^I am on the home page$/) do
-    pending # express the regexp above with the code you wish you had
+  visit "/"
 end
 
 Given(/^I am not signed in$/) do
-    pending # express the regexp above with the code you wish you had
+  if page.has_content? "Sign out"
+    click "Sign out"
+  end
 end
 
-When(/^I enter my account credentials$/) do
-    pending # express the regexp above with the code you wish you had
+When(/^I sign in$/) do
+  visit "/users/sign_in"
+  fill_in "user_email", :with => "testuser@netversa.com"
+  fill_in "user_password", :with => "123kkJkS"
+  click_button "Sign in"
 end
 
-Then(/^I should see see the message "(.*?)"$/) do |arg1|
-    pending # express the regexp above with the code you wish you had
+When(/^I click button "(.*?)"$/) do |button|
+  click_button button 
+end
+
+Then(/^I should see see the message "(.*?)"$/) do |message|
+  page.has_content? message
+end
+
+Given(/^a user exists/i) do
+  @user = FactoryGirl.create(:user, :email => 'testuser@netversa.com', :password => '123kkJkS', :password_confirmation => '123kkJkS')
 end
 
 Given(/^I am logged in$/) do
-    pending # express the regexp above with the code you wish you had
+  visit "/users/sign_in"
+  fill_in "user_email", :with => "testuser@netversa.com"
+  fill_in "user_password", :with => "123kkJkS"
+  click_button "Sign in"
 end
 
-When(/^I click "(.*?)"$/) do |arg1|
-    pending # express the regexp above with the code you wish you had
+When(/^I click link "(.*?)"$/) do |link|
+  click_link link 
 end
 
-Then(/^I should see the message "(.*?)"$/) do |arg1|
-    pending # express the regexp above with the code you wish you had
+Then(/^I should see the message "(.*?)"$/) do |message|
+  page.has_content? message
 end
 
 Given(/^I am on the report page$/) do
-    pending # express the regexp above with the code you wish you had
+  visit "/report"
 end
 
-When(/^I view the page$/) do
-    pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see a detailed report$/) do
-    pending # express the regexp above with the code you wish you had
+Then(/^I should see a detailed report containing "(.*?)"$/) do |site_name|
+  page.has_content? site_name
 end
