@@ -2,7 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0.rc1'
 
-gem 'mysql2'
+group :development, :test do
+  gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+end
+
 gem 'devise'
 gem 'protected_attributes'
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -24,3 +30,6 @@ gem 'elance', git: 'git://github.com/NetVersaLLC/elance_gem.git'
 gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
 gem "haml-rails"
 gem 'cucumber'
+gem 'dalli'
+gem 'mechanize'
+
