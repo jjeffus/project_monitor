@@ -3,10 +3,14 @@ Feature: Account management
   As a end-user.
   I want to be able to perform account functions.
 
+  Background:
+    Given a user exists
+
   Scenario: Login
     Given I am on the home page
     And I am not signed in
     When I enter my account credentials
+    And I click "Sign in"
     Then I should see see the message "Signed In"
 
   Scenario: Logout

@@ -1,25 +1,32 @@
 Given(/^I am on the home page$/) do
-    pending # express the regexp above with the code you wish you had
+    visit "/"
 end
 
 Given(/^I am not signed in$/) do
-    pending # express the regexp above with the code you wish you had
+    if page has_content("Sign out")
+      click "Sign out"
+    end
 end
 
 When(/^I enter my account credentials$/) do
-    pending # express the regexp above with the code you wish you had
+    fill_in "Login", :with => "testuser@netversa.com"
+    fill_in "Password", :with => "123kkJkS"
 end
 
 Then(/^I should see see the message "(.*?)"$/) do |arg1|
     pending # express the regexp above with the code you wish you had
 end
 
+Given(/^a user exists/i) do
+  @user = FactoryGirl.create(:user, :email => 'testuser@netversa.com', :password => '123kkJkS', :password_confirmation => '123kkJkS')
+end
+
 Given(/^I am logged in$/) do
     pending # express the regexp above with the code you wish you had
 end
 
-When(/^I click "(.*?)"$/) do |arg1|
-    pending # express the regexp above with the code you wish you had
+When(/^I click "(.*?)"$/) do |link|
+    click_link link
 end
 
 Then(/^I should see the message "(.*?)"$/) do |arg1|

@@ -29,12 +29,9 @@ gem 'cancan'
 gem 'elance', git: 'git://github.com/NetVersaLLC/elance_gem.git'
 gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
 gem "haml-rails"
-gem 'cucumber'
+gem 'cucumber-rails'
 gem 'dalli'
 gem 'mechanize'
-
-
 gem 'capistrano'
 gem 'thin'
-gem 'bigdecimal'
-
+gem 'factory_girl'
