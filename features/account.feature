@@ -9,11 +9,11 @@ Feature: Account management
   Scenario: Login
     Given I am on the home page
     And I am not signed in
-    When I enter my account credentials
-    And I click "Sign in"
+    When I sign in
     Then I should see see the message "Signed In"
 
   Scenario: Logout
     Given I am logged in
-    When I click "Logout"
+    And I am on the report page
+    When I click link "Log out"
     Then I should see the message "You have been logged out!"
