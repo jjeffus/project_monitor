@@ -4,6 +4,6 @@ Feature: Report
   I want to be able to view a report of development progress.
 
  Scenario: Report
-    Given I am logged in
-    And I am on the report page
-    Then I should see a detailed report containing "Github"
+  Given I am logged in
+  And I am on the report page
+  Then I should see a detailed report containing "Github"

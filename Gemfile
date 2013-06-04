@@ -20,6 +20,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
+gem 'github-api'
+gem 'pivotal-tracker'
 
 gem 'unicorn'
 #gem 'capistrano', group: :development

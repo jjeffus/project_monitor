@@ -1,0 +1,118 @@
+<script>
+$(function () {
+    var ExamplePageViewModel = function() {
+        var self = this;
+        self.getData = function (page, size, callback) {
+            var params = "?page.page=" + (page) + "&page.size=" + size;
+            $.getJSON("/frameworks" + params, callback);
+        };
+        self.tableViewModel = new ko.dataTable.ViewModel({
+            columns: [
+                { name: "FRAMEWORK", value: "name" },
+                { name: "LICENSE", value: "license" },
+                { name: "DEPENDENCY", value: "dependency" },
+                { name: "SIZE (Gzipped)", value: function (item) { return item.size != '' ? item.size + ' kb' : ''} }
+            ],
+            loader: self.getData,
+            pageSize: 10
+        });
+    };
+    ko.applyBindings(new ExamplePageViewModel());
+});
+</script>
+
+<div class="table">
+  <div class="center">
+    <table class="tabular table-striped table-bordered dev">
+    <tr>
+      <th class="align_left">
+        <strong>Developer</strong>
+      </th>
+      <th class="align_left">
+        <strong>Pending Messages</strong>
+      </th>
+      <th class="align_left">
+        <strong>Hours This Week</strong>
+      </th>
+      <th class="align_left">
+        <strong>Commits This Week</strong>
+      </th>      
+    </tr>
+    <tr>
+      <th class="align_left">Dev</th>
+      <th class="align_left"></th>
+      <th class="align_left"></th>      
+    </tr>
+    <tr>      
+      <th class="align_left">Dev</th>
+      <th class="align_left"></th>
+      <th class="align_left"></th>                  
+    <tr>
+    <tr>
+      <th class="align_left">Dev</th>
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    <tr>
+    <tr>
+      <th class="align_left">Dev</th>
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    <tr>
+    <tr>
+      <th class="align_left">Dev</th>        
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    </tr>
+    <tr>
+      <th class="align_left">Dev</th>        
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    </tr>
+    <tr>
+      <th class="align_left">Dev</th>        
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    </tr>
+    <tr>
+      <th class="align_left">Dev</th>        
+      <th class="align_left"></th>
+      <th class="align_left"></th>            
+    </tr>
+  </div>
+</div>
+
+<div class="table">
+  <div class="center">
+    <table class="tabular table-striped table-bordered project">
+    <tr>
+      <th class="align_left">
+        <strong>Project</strong>
+      </th>
+      <th class="align_left">
+        <strong>Velocity</strong>
+      </th>
+    </tr>
+    <tr>
+      <th class="align_left">Proj</th>
+      <th class="align_left">VelocityAmount</th>   
+    </tr>
+    <tr>      
+      <th class="align_left">Proj</th>
+      <th class="align_left">VelocityAmount</th>               
+    <tr>
+    <tr>
+      <th class="align_left">Proj</th>
+      <th class="align_left">VelocityAmount</th>         
+    <tr>
+    <tr>
+      <th class="align_left">Proj</th>
+      <th class="align_left">VelocityAmount</th>          
+    <tr>
+    <tr>
+      <th class="align_left">Proj</th>        
+      <th class="align_left">VelocityAmount</th>           
+    </tr>
+  </div>
+</div>
+
+<table data-bind="dataTable: tableViewModel"></table>

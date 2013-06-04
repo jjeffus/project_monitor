@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
+//= require knockout
+//= require knockout.mapping
 //= require_tree .

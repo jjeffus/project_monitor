@@ -9,10 +9,7 @@ Given(/^I am not signed in$/) do
 end
 
 When(/^I sign in$/) do
-  visit "/users/sign_in"
-  fill_in "user_email", :with => "testuser@netversa.com"
-  fill_in "user_password", :with => "123kkJkS"
-  click_button "Sign in"
+  sign_in
 end
 
 When(/^I click button "(.*?)"$/) do |button|
@@ -28,10 +25,7 @@ Given(/^a user exists/i) do
 end
 
 Given(/^I am logged in$/) do
-  visit "/users/sign_in"
-  fill_in "user_email", :with => "testuser@netversa.com"
-  fill_in "user_password", :with => "123kkJkS"
-  click_button "Sign in"
+  sign_in
 end
 
 When(/^I click link "(.*?)"$/) do |link|
