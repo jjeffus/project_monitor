@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 class PivotalReport
-  def self.get_project_info
+  def self.get_project_data
     pivotal_data = []
     @projects = PivotalTracker::Project.all
     @projects.each do |project|
