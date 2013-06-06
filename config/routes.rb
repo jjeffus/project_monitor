@@ -1,4 +1,6 @@
 ProjectMonitor::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users
 
   get '/pages/make_redirect', :controller => :pages, :action => :make_redirect

@@ -11,6 +11,11 @@ group :production do
 #  gem 'pg'
 end
 
+gem 'responders',          github: 'plataformatec/responders'
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'ransack',             github: 'ernie/ransack',            branch: 'rails-4'
+gem 'activeadmin',         github: 'akashkamboj/active_admin', branch: 'rails4'
+
 gem 'devise'
 gem 'protected_attributes'
 gem 'sass-rails', '~> 4.0.0.rc1'
