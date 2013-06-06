@@ -4,9 +4,9 @@
 class PivotalReport
   def self.get_project_info
     pivotal_data = []
-    @projects =self PivotalTracker::Project.all
+    @projects = PivotalTracker::Project.all
     @projects.each do |project|
-      project.selftories.all.each do |story|
+      project.self.stories.all.each do |story|
         pivotal_data << output if story.current_state == "started"
       end
     end
