@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0.rc1'
 
 group :development, :test do
-  gem 'mysql2'
   gem 'rspec-rails'
 end
 
@@ -21,6 +20,7 @@ group :test do
   gem 'cucumber-rails'
 end
 
+gem 'bson_ext'
 gem 'responders',          github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'ransack',             github: 'ernie/ransack',            branch: 'rails-4'
@@ -51,4 +51,4 @@ gem 'dalli'
 gem 'mechanize'
 gem 'capistrano'
 gem 'thin'
-
+gem 'mongoid'
