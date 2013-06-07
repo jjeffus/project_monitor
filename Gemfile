@@ -4,7 +4,7 @@ gem 'rails', '4.0.0.rc1'
 
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
