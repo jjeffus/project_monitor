@@ -10,8 +10,7 @@ class Report
     report
   end
   
-  #def self.latest
-    #Report.order(:create_at).first
-  #end
-  
+  def self.latest
+    Report.order(:create_at).first
+  end
 end

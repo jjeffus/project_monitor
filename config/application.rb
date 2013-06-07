@@ -1,10 +1,14 @@
 require File.expand_path('../boot', __FILE__)
 
+<<<<<<< HEAD
 # require 'rails/all'
 require "action_controller/railtie"
 require "action_mailer/railtie"
 # require "active_resource/railtie"
 require "sprockets/railtie"
+=======
+require 'rails/all'
+>>>>>>> 00adfcd7bbb86f9c9c2da131f17152fc9ab28b5b
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

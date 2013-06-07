@@ -6,5 +6,5 @@ class GithubReport
     end
     @github.repos.commits(org:'netversallc', repo:'contact')
   end
-  
+
 end

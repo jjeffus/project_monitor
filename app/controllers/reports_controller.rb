@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
   def index
-    #@report = Report.latest
+    @report = Report.latest
   end
 end

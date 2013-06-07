@@ -1,6 +1,9 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
 class PivotalReport
   include Mongoid::Document
-  
+
   def self.get_project_data
     pivotal_data = []
     @projects = PivotalTracker::Project.all
@@ -11,5 +14,5 @@ class PivotalReport
     end
     pivotal_data
   end
-  
+
 end

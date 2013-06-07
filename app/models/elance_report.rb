@@ -1,6 +1,6 @@
 class ElanceReport
   include Mongoid::Document
-  
+
   def self.get_hours_worked_by_developer
     #cache = Dalli::Client.new(Settings.memcache.host)
     elance = Elance::Freelancer.new(Rails.cache.read('elance_token'))
@@ -11,5 +11,4 @@ class ElanceReport
     end
     elance_data
   end
-  
 end

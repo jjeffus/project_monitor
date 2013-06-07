@@ -27,6 +27,18 @@ gem 'dalli'
 gem 'thin'
 gem 'unicorn'
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :production do
+#  gem 'pg'
+end
+
+group :doc do
+  gem 'sdoc', require: false
+end
+
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
