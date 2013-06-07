@@ -4,6 +4,8 @@ gem 'rails', '4.0.0.rc1'
 
 gem 'mongoid', github: 'mongoid/mongoid'
 
+gem 'settingslogic'
+
 gem 'devise', github: 'plataformatec/devise'
 gem 'cancan'
 
