@@ -1,1 +1,1 @@
-PivotalTracker::Client.token = Settings.pivotal.token
+# PivotalTracker::Client.token = Settings.pivotal.token

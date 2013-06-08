@@ -70,11 +70,6 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-<<<<<<< HEAD
-  # config.pepper = "7aa0383f6f51e6fa5fccb3fa7f6a3f7d4814dfba36aee1d4a7f6789292c67b770d3531f00465308a02fb74fc58f19b3c203895c253b2cff900dc72878fd0a052"
-=======
-  # config.pepper = "967d5abc2c9406c12a2278b9c601a77d8cb46414290b5b0d5f77b2b6f64168ad74d501ebde70c976d080c3abdf920cdce79b6a71880566587a6a9db35ad3e6e2"
->>>>>>> 00adfcd7bbb86f9c9c2da131f17152fc9ab28b5b
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -172,19 +167,11 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-<<<<<<< HEAD
-  # config.scoped_views = false
-
-  # Configure the default scope given to Warden. By default it's the first
-  # devise role declared in your routes (usually :user).
-  # config.default_scope = :user
-=======
   config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
   config.default_scope = :user
->>>>>>> 00adfcd7bbb86f9c9c2da131f17152fc9ab28b5b
 
   # Configure sign_out behavior.
   # Sign_out action can be scoped (i.e. /users/sign_out affects only :user scope).

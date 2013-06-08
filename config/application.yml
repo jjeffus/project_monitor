@@ -1,0 +1,25 @@
+defaults: &defaults
+  github:
+    org:           'netversallc'
+    user:          'dcollazo'
+    basic_auth:    'dcollazo:fark123'
+    client_id:     'a58e0b4942ca868245be'
+    client_secret: '46fce2160ed85e2dd254d54432bcc44e07e9813e'
+  pivotal:
+    token:         '15fef90545168a79279cb79b8e1cbdd0'
+  elance:
+    client_id:     '5175ab7ee4b044e8334505e2'
+    client_secret: 'T_S-d-zC_btizlqmcuEA'
+    callback:      'http://reports.netversa.com/callback'
+  memcache:
+    host:          'localhost'
+    port:          '11211'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
