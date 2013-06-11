@@ -26,6 +26,9 @@ class GithubReport < ActiveRecord::Base
 		collaborators = []
 		commit_count = Hash.new(0)
 
+    ap ["Github", @github]
+    ap ["Repos", @github.repos]
+
 		@github.repos.list(org:'netversallc').each do |repository|
 		  repo_names << /\/[a-zA-Z]*/.match(repository.full_name).to_s[1..-1].downcase
 		  repo_names.delete 'vitelity'

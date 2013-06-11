@@ -6,8 +6,8 @@ gem 'devise'
 gem 'cancan'
 
 gem 'elance', git: 'git://github.com/NetVersaLLC/elance_gem.git'
-gem 'github_api'
 gem 'pivotal-tracker'
+gem 'octokit'
 
 gem 'better_errors'
 gem "binding_of_caller"
@@ -24,6 +24,8 @@ gem 'thin'
 gem 'unicorn'
 gem 'protected_attributes'
 gem 'figaro'
+gem 'awesome_print'
+gem 'pry'
 
 group :development do
   gem 'sqlite3'
