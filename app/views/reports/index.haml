@@ -1,0 +1,22 @@
+.span3
+  .table
+    .center
+      %table.tabular.table-striped.table-bordered
+        %tr
+          %th.align_left
+            -PivotalReport.open_stories.sort.each do |story|
+              %p= story.capitalize
+
+.span3
+  .table
+    .center
+      %table.tabular.table-striped.table-bordered
+        %tr
+          %th.align_left
+            %strong Project
+          %th.align_left
+            %strong Velocity
+        -PivotalReport.velocities.each do |velocity|
+          %tr
+            %th.align_left="#{velocity.first[0]}"
+            %th.align_left="#{velocity.first[1]}"
