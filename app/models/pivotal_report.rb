@@ -30,8 +30,8 @@ class PivotalReport < ActiveRecord::Base
 		@velocities = project_velocities.dup
 		@pivotal_data['velocities'] = @velocities
 
-		report = PivotalReport.new
-		report.save
+		#report = PivotalReport.new
+		#report.save
 	end
 end
 

@@ -2,13 +2,14 @@
 # encoding: utf-8
 
 class GithubReport < ActiveRecord::Base
+	serialize :github_data, Hash
 
-	def self.github_commits
-		github_commits
+	def self.repo_commits
+		@repo_commits
 	end
 
-	def self.github_last_commit
-		github_last_commit
+	def self.member_commits
+		@member_commits
 	end
 
 	def self.most_recent_commit
@@ -20,7 +21,7 @@ class GithubReport < ActiveRecord::Base
 		organization = 'netversallc'
 
 		@most_recent_commit = {}
-		@repo_commits = {}
+		@repo_commits = Hash.new(0)
 		@member_commits = Hash.new(0)
 
 		# parsed data
@@ -71,6 +72,9 @@ class GithubReport < ActiveRecord::Base
 		  next if commit_time.class == NilClass
 		   @most_recent_commit[repo_name] = /\d\d:\d\d:\d\d/.match(commit_time['commit']['author']['date']).to_s
 		end
+
+		report = GithubReport.new
+		report.save
 	end
 end
 
