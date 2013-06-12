@@ -3,59 +3,74 @@
 
 class GithubReport < ActiveRecord::Base
 
-	@github_commits = []
-	@github_last_commit = []
-
-	def self.commits
-		@github_commits
+	def self.github_commits
+		github_commits
 	end
 
-	def self.last_commit_time
-		@github_last_commit
+	def self.github_last_commit
+		github_last_commit
 	end
 
-  def self.get_commits
-		@github = Github.new do |config|
-		  config.basic_auth = ENV["GITHUB_BASIC_AUTH"]
-		  config.client_id = ENV["GITHUB_CLIENT_ID"]
-		  config.client_secret = ENV["GITHUB_CLIENT_SECRET"]
-		end
+	def self.most_recent_commit
+		@most_recent_commit
+	end
 
+	def self.get_commits
+		@github = Octokit::Client.new(:login => "dcollazo", :password => "fark123")
 		organization = 'netversallc'
+
+		@most_recent_commit = {}
+		@repo_commits = {}
+		@member_commits = Hash.new(0)
+
+		# parsed data
+		commits = []
 		repo_names = []
-		collaborators = []
+		last_commit = {}
+		member_names = []
+		github_commits = []
+		github_last_commit = []
+
+		# responses
+		repos = @github.organization_repositories(organization)
+		members = @github.org_members(organization)
+
+		# Commit count for each repo in the past 24 hours
 		commit_count = Hash.new(0)
 
-    ap ["Github", @github]
-    ap ["Repos", @github.repos]
-
-		@github.repos.list(org:'netversallc').each do |repository|
-		  repo_names << /\/[a-zA-Z]*/.match(repository.full_name).to_s[1..-1].downcase
-		  repo_names.delete 'vitelity'
-		  repo_names.delete 'elance'
-		end
-
-		# get list of collaborators across an organization
-		repo_names.each do |repo_name|
-		  @github.repos.collaborators.all('netversallc', repo_name).each do |collab| 
-		    collaborators << collab.login unless collaborators.include?(collab.login) 
-		  end
-		end
-
-		#get list of commits in a repository
-		repo_names.each do |repo_name|
-		  @github.repos.commits.all('netversallc', repo_name).each do |commit|
+		repos.each do |repository|
+		  exclusion_list = ['vitelity_gem', 'elance_gem']
+		  next if exclusion_list.include? repository.name
+		  repo_names << repository.name.downcase
 		  
-		  begin
-		    author = commit['author']['login']
-		  rescue
-		    next
-		  end
-
-		    commit_count[author] += 1
-		  end
+		  # all commits in the past 24 hours
+		  commits << ["#{repository.name.downcase}", @github.commits_since("#{organization}/#{repository.name}", "#{(Time.now - 86400).to_s[0..9]}")]
 		end
-		commit_count
-  end
+		  
+		commits.each do |commit_array|
+		  repo = commit_array[0]
+		  commit = commit_array[1]
+		  @repo_commits[repo] = commit.size
+		  last_commit[repo] = commit.first
+		end
 
+		commits.each_with_index do |commit_array, index|
+		  # @member_commits[1][0]['author']['login'] += 1
+		  commit_array[1].each do |commit|
+		    begin
+		      @member_commits[commit['author']['login']] += 1
+		    rescue
+		      next
+		    end
+		  end
+		  @member_commits
+		end
+
+		repo_names.each do |repo_name|
+		  commit_time = last_commit[repo_name]
+		  next if commit_time.class == NilClass
+		   @most_recent_commit[repo_name] = /\d\d:\d\d:\d\d/.match(commit_time['commit']['author']['date']).to_s
+		end
+	end
 end
+
