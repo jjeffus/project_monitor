@@ -20,6 +20,7 @@ gem 'mechanize'
 
 gem 'bson_ext'
 gem 'capistrano'
+gem 'capistrano-db-tasks', require: false
 gem 'dalli'
 gem 'thin'
 gem 'unicorn'
