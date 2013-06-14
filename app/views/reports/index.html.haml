@@ -1,0 +1,59 @@
+.span3
+  .table
+    .center
+      %table.table-striped
+        %tr
+          %th.align_left
+            %strong Project
+          %th.align_left
+            %strong Velocity
+        - @velocities.each do |velocity|
+          %tr
+            %th.align_left="#{velocity.first[0]}"
+            %th.align_left="#{velocity.first[1]}"
+
+.span4
+  .table
+    .center
+      %table.tabular.table-striped.table-bordered
+        %tr
+          %th.align_left
+            %strong Repository
+          %th.align_left
+            %strong Commits
+          %th.align_left
+            %strong Last
+          %tr
+        - @repo_commits.each do |repo|
+          %tr
+            %th.align_left
+              = repo[0].capitalize
+            %th.align_left
+              = repo[1]
+              - @most_recent_commit.each do |recent_commit|  
+                - if recent_commit[0] == repo[0] 
+                  %th.align_left="#{recent_commit[1]}"  
+
+.span3
+  .table
+    .center
+      %table.tabular.table-striped.table-bordered
+        %tr
+          %th.align_left
+            %strong Member
+          %th.align_left
+            %strong Commits
+        - @member_commits.each do |member|
+          %tr
+            %th.align_left="#{member[0].capitalize}"
+            %th.align_left="#{member[1]}"
+
+.span12
+  .table
+    .center
+      %table.tabular.table-striped.table-bordered
+        %tr
+          %th.align_left
+            %p= "Active Pivotal Stories"
+            - @open_stories.sort.reverse.each do |story|
+              %p= story.capitalize

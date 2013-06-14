@@ -13,7 +13,8 @@ gem 'better_errors'
 gem "binding_of_caller"
 
 gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
-gem "haml-rails"
+gem 'haml'
+gem 'haml-rails'
 
 gem 'mechanize'
 

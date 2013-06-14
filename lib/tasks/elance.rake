@@ -1,5 +1,6 @@
 namespace :elance do
   task :token_url => :environment do
+    # set client_id and client_secret in ENV/figaro
     client = Elance::Authentication.new('a58e0b4942ca868245be',
                                         '46fce2160ed85e2dd254d54432bcc44e07e9813e')
     token_url = client.request_access_code( 'http://reports.netversa.com/callback' )

@@ -4,25 +4,25 @@
 class GithubReport < ActiveRecord::Base
 	serialize :github_data, Hash
 
-	def self.repo_commits
-		@repo_commits
+	def repo_commits
+		self.github_data['repo_commits']
 	end
 
-	def self.member_commits
-		@member_commits
+	def most_recent_commit
+		self.github_data['most_recent_commit']
 	end
 
-	def self.most_recent_commit
-		@most_recent_commit
+	def member_commits
+		self.github_data['member_commits']
 	end
 
 	def self.get_commits
-		@github = Octokit::Client.new(:login => "dcollazo", :password => "fark123")
+		github = Octokit::Client.new(:login => "dcollazo", :password => "fark123")
 		organization = 'netversallc'
 
-		@most_recent_commit = {}
-		@repo_commits = Hash.new(0)
-		@member_commits = Hash.new(0)
+		most_recent_commit = {}
+		repo_commits = Hash.new(0)
+		member_commits = Hash.new(0)
 
 		# parsed data
 		commits = []
@@ -32,9 +32,11 @@ class GithubReport < ActiveRecord::Base
 		github_commits = []
 		github_last_commit = []
 
+		github_data = {}
+
 		# responses
-		repos = @github.organization_repositories(organization)
-		members = @github.org_members(organization)
+		repos = github.organization_repositories(organization)
+		members = github.org_members(organization)
 
 		# Commit count for each repo in the past 24 hours
 		commit_count = Hash.new(0)
@@ -45,13 +47,13 @@ class GithubReport < ActiveRecord::Base
 		  repo_names << repository.name.downcase
 		  
 		  # all commits in the past 24 hours
-		  commits << ["#{repository.name.downcase}", @github.commits_since("#{organization}/#{repository.name}", "#{(Time.now - 86400).to_s[0..9]}")]
+		  commits << ["#{repository.name.downcase}", github.commits_since("#{organization}/#{repository.name}", "#{(Time.now - 86400).to_s[0..9]}")]
 		end
 		  
 		commits.each do |commit_array|
 		  repo = commit_array[0]
 		  commit = commit_array[1]
-		  @repo_commits[repo] = commit.size
+		  repo_commits[repo] = commit.size
 		  last_commit[repo] = commit.first
 		end
 
@@ -59,22 +61,26 @@ class GithubReport < ActiveRecord::Base
 		  # @member_commits[1][0]['author']['login'] += 1
 		  commit_array[1].each do |commit|
 		    begin
-		      @member_commits[commit['author']['login']] += 1
+		      member_commits[commit['author']['login']] += 1
 		    rescue
 		      next
 		    end
 		  end
-		  @member_commits
+		  member_commits
 		end
 
 		repo_names.each do |repo_name|
 		  commit_time = last_commit[repo_name]
 		  next if commit_time.class == NilClass
-		   @most_recent_commit[repo_name] = /\d\d:\d\d:\d\d/.match(commit_time['commit']['author']['date']).to_s
+		   most_recent_commit[repo_name] = /\d*:\d*:\d*/.match(commit_time['commit']['author']['date']).to_s
 		end
 
+		github_data['repo_commits'] = repo_commits
+		github_data['most_recent_commit'] = most_recent_commit
+		github_data['member_commits'] = member_commits
+
 		report = GithubReport.new
+		report.github_data = github_data
 		report.save
 	end
 end
-

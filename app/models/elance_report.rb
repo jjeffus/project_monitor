@@ -3,11 +3,11 @@
 
 class ElanceReport < ActiveRecord::Base
 
-@elance_data = []
+  @elance_data = []
 
-def elance_data
-	@elance_data
-end
+  def elance_data
+  	@elance_data
+  end
 
   def self.get_hours_worked_by_developer
     elance = Elance::Freelancer.new(elance_token)
@@ -18,4 +18,5 @@ end
     end
     @elance_data
   end
+  
 end
